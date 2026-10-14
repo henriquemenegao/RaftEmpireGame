@@ -18,10 +18,23 @@ namespace Equipment.Fishing
         private float elapsedTime;
         private bool isProducing;
 
-        public float Progress =>
-            Mathf.Clamp01(elapsedTime / Mathf.Max(0.01f, productionDuration));
+        public float Progress => Mathf.Clamp01(elapsedTime / Mathf.Max(0.01f, productionDuration));
 
         public bool IsProducing => isProducing;
+        
+        
+        private void Awake()
+        {
+            inventory = FindAnyObjectByType<ResourceInventory>();
+
+            if (inventory == null)
+            {
+                Debug.LogError(
+                    "FishingStation: ResourceInventory não encontrado na cena."
+                );
+            }
+        }
+
         
 
         public void Initialize(ResourceInventory resourceInventory)

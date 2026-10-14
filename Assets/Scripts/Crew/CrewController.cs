@@ -27,8 +27,6 @@ namespace Crew
 
             CurrentActivity = activity;
 
-            animator.ResetTrigger("StopFishing");
-
             switch (activity)
             {
                 case CrewActivity.Fishing:
@@ -50,7 +48,6 @@ namespace Crew
                 return;
 
             animator.ResetTrigger("StartFishing");
-            animator.ResetTrigger("StopFishing");
 
             animator.CrossFade("Idle", 0.05f, 0);
 

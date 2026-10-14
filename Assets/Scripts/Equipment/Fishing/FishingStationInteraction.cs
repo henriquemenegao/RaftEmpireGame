@@ -3,6 +3,7 @@ using Crew;
 using Equipment.Core;
 using Resources;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Equipment.Fishing
 {
@@ -23,6 +24,12 @@ namespace Equipment.Fishing
 
         private void OnMouseDown()
         {
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (crewManager == null)
                 crewManager = FindAnyObjectByType<CrewManager>();
 

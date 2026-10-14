@@ -131,7 +131,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.13, y: -0.2, z: 0.13}
+  m_Size: {x: 0.13, y: 0.2, z: 0.13}
   m_Center: {x: -0.07, y: 0.11, z: 0}
 --- !u!114 &736707710140229779
 MonoBehaviour:
@@ -145,6 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc84a9f2593ee5b4e8f12c411fa396da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Equipment.Fishing.FishingStation
+  displayName: "Esta\xE7\xE3o de Pesca"
+  level: 1
+  productionDescription: Produz peixes
   interactionPoint: {fileID: 5695640961647497937}
   productionDuration: 20
   fishPerCycle: 1
@@ -160,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02579a7b4045a33439b41dd49d6f62c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Equipment.Fishing.FishingStationInteraction
-  interactionPoint: {fileID: 5695640961647497937}
+  selectedCrewMember: {fileID: 0}
 --- !u!1 &1735305654340593101
 GameObject:
   m_ObjectHideFlags: 0
