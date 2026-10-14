@@ -696,6 +696,8 @@ MonoBehaviour:
   crewEfficiency: {fileID: 3628582025998548258}
   crewStatus: {fileID: 5070244917890782109}
   crewActionButton: {fileID: 5837549135235469817}
+  crewActionText: {fileID: 3026959359842463500}
+  crewActionBackground: {fileID: 2709765890683628407}
 --- !u!1 &8778133699474398985
 GameObject:
   m_ObjectHideFlags: 0

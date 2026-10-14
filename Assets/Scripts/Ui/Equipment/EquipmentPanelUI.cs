@@ -26,13 +26,23 @@ namespace UI.Equipment
 
             SelectedWorkstation = workstation;
 
-            RefreshHeader();
-            RefreshOperator();
-            
+            Refresh();
             crewList.Refresh(SelectedWorkstation);
 
             UIManager.Instance.OpenModal(gameObject);
         }
+        
+        
+        public void Refresh()
+        {
+            if (SelectedWorkstation == null)
+                return;
+
+            RefreshHeader();
+            RefreshOperator();
+            crewList.RefreshCards();
+        }
+
 
         private void RefreshHeader()
         {

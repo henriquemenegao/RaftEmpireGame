@@ -35,5 +35,20 @@ namespace UI
                 card.Initialize(member, workstation);
             }
         }
+        
+        public void RefreshCards()
+        {
+            if (content == null)
+                return;
+
+            foreach (Transform child in content)
+            {
+                CrewMemberCardUI card =
+                    child.GetComponent<CrewMemberCardUI>();
+
+                if (card != null)
+                    card.Refresh();
+            }
+        }
     }
 }
