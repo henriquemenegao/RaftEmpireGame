@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3009749812980195286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68898743
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7247733
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 92.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      propertyPath: m_Name
+      value: Fred
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5686599722935070660}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3008732015717276377}
+  m_SourcePrefab: {fileID: 100100000, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+--- !u!1 &2667730029373727367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+  m_PrefabInstance: {fileID: 3009749812980195286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5686599722935070660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667730029373727367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c9ba6d36c3d0943a5f1088e62c8e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crew.CrewController
+  animator: {fileID: 8695978278537339463}
+--- !u!114 &3008732015717276377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667730029373727367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f45b60dabbdd9a44a95ab456e317612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crew.CrewMember
+  crewName: Fred
+  isCaptain: 1
+  efficiency: 1
+--- !u!95 &8695978278537339463 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9bd63ce65174bac46a6b921407ad5206, type: 3}
+  m_PrefabInstance: {fileID: 3009749812980195286}
+  m_PrefabAsset: {fileID: 0}
