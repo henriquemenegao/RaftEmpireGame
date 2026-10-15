@@ -1,3 +1,5 @@
+using Equipment.Core;
+using UI.Equipment;
 using UnityEngine;
 
 namespace UI
@@ -5,6 +7,9 @@ namespace UI
     public class UIManager : MonoBehaviour
     {
         public static UIManager Instance { get; private set; }
+
+        [Header("Painéis")]
+        [SerializeField] private EquipmentPanelUI equipmentPanel;
 
         private GameObject activeModal;
 
@@ -20,6 +25,22 @@ namespace UI
             }
 
             Instance = this;
+        }
+
+        public void OpenEquipmentPanel(Workstation workstation)
+        {
+            if (workstation == null || HasOpenModal)
+                return;
+
+            if (equipmentPanel == null)
+            {
+                Debug.LogWarning(
+                    "UIManager: EquipmentPanelUI não configurado."
+                );
+                return;
+            }
+
+            equipmentPanel.Open(workstation);
         }
 
         public void OpenModal(GameObject modal)

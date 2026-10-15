@@ -1,14 +1,20 @@
-using Equipment.Fishing;
+using Equipment.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Ui
 {
-    public class FishingProgressUI : MonoBehaviour
+    public class WorkstationProgressUI : MonoBehaviour
     {
-        [SerializeField] private FishingStation fishingStation;
+        [SerializeField] private Workstation workstation;
         [SerializeField] private Image progressFill;
         [SerializeField] private GameObject progressVisual;
+
+        private void Awake()
+        {
+            if (workstation == null)
+                workstation = GetComponentInParent<Workstation>();
+        }
 
         private void Start()
         {
@@ -22,18 +28,18 @@ namespace Ui
 
         private void UpdateProgress()
         {
-            if (fishingStation == null ||
+            if (workstation == null ||
                 progressFill == null ||
                 progressVisual == null)
                 return;
 
-            bool isProducing = fishingStation.IsProducing;
+            bool isProducing = workstation.IsProducing;
 
             if (progressVisual.activeSelf != isProducing)
                 progressVisual.SetActive(isProducing);
 
             if (isProducing)
-                progressFill.fillAmount = fishingStation.Progress;
+                progressFill.fillAmount = workstation.Progress;
         }
     }
 }

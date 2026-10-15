@@ -1,6 +1,8 @@
+
 using Equipment.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.Equipment
 {
@@ -9,11 +11,15 @@ namespace UI.Equipment
         [Header("Cabeçalho")]
         [SerializeField] private TMP_Text equipmentTitle;
         [SerializeField] private TMP_Text equipmentSubtitle;
-        
+
+        [Header("Produção")]
+        [SerializeField] private Image productionIcon;
+        [SerializeField] private TMP_Text productionAmount;
+
         [Header("Operador")]
         [SerializeField] private TMP_Text operatorName;
         [SerializeField] private TMP_Text operatorEfficiency;
-        
+
         [Header("Tripulação")]
         [SerializeField] private CrewListUI crewList;
 
@@ -31,36 +37,48 @@ namespace UI.Equipment
 
             UIManager.Instance.OpenModal(gameObject);
         }
-        
-        
+
         public void Refresh()
         {
             if (SelectedWorkstation == null)
                 return;
 
             RefreshHeader();
+            RefreshProduction();
             RefreshOperator();
             crewList.RefreshCards();
         }
 
-
         private void RefreshHeader()
         {
-            if (SelectedWorkstation == null)
-                return;
-
             equipmentTitle.text = SelectedWorkstation.DisplayName;
 
             equipmentSubtitle.text =
                 $"Nível {SelectedWorkstation.Level} · " +
                 SelectedWorkstation.ProductionDescription;
         }
-        
+
+        private void RefreshProduction()
+        {
+            if (productionIcon != null)
+            {
+                productionIcon.sprite = SelectedWorkstation.ProductionIcon;
+                productionIcon.enabled =
+                    SelectedWorkstation.ProductionIcon != null;
+            }
+
+            if (productionAmount != null)
+            {
+                int amount = SelectedWorkstation.BaseProductionAmount;
+                float duration = SelectedWorkstation.ProductionDuration;
+
+                productionAmount.text =
+                    $"{amount} / {duration:0.#}s";
+            }
+        }
+
         private void RefreshOperator()
         {
-            if (SelectedWorkstation == null)
-                return;
-
             var currentOperator = SelectedWorkstation.Operator;
 
             if (currentOperator == null)

@@ -9,6 +9,8 @@ namespace Equipment.Fishing
     {
         
         public override CrewActivity Activity => CrewActivity.Fishing;
+        public override int BaseProductionAmount => fishPerCycle;
+        public override float ProductionDuration => productionDuration;
 
         [Header("Produção")]
         [SerializeField] private float productionDuration = 20f;
@@ -18,9 +20,9 @@ namespace Equipment.Fishing
         private float elapsedTime;
         private bool isProducing;
 
-        public float Progress => Mathf.Clamp01(elapsedTime / Mathf.Max(0.01f, productionDuration));
+        public override  float Progress => Mathf.Clamp01(elapsedTime / Mathf.Max(0.01f, productionDuration));
 
-        public bool IsProducing => isProducing;
+        public override  bool IsProducing => isProducing;
         
         
         private void Awake()

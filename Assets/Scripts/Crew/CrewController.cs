@@ -34,6 +34,7 @@ namespace Crew
                     break;
 
                 case CrewActivity.CollectingWater:
+                    animator.SetTrigger("StartCollectingWater");
                     break;
 
                 case CrewActivity.Idle:
@@ -48,7 +49,7 @@ namespace Crew
                 return;
 
             animator.ResetTrigger("StartFishing");
-
+            animator.ResetTrigger("StartCollectingWater");
             animator.CrossFade("Idle", 0.05f, 0);
 
             CurrentActivity = CrewActivity.Idle;
