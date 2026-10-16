@@ -24,8 +24,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 7afefe52747e09c4091f05f19eb4b2f6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _ENABLE_FOAM
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHAMODULATE_ON
   - _EMISSION
@@ -156,7 +155,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _ENABLE_FOAM: 1
+    - _ENABLE_FOAM: 0
     - _ENABLE_REFRACTION: 0
     - _ENABLE_WAVES: 0
     - _EnvironmentReflections: 1
