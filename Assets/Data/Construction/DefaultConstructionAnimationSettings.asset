@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01ca51f231a433c8d2565afd04aa3d0, type: 3}
+  m_Name: DefaultConstructionAnimationSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Equipment.Construction.ConstructionAnimationSettings
+  ParticlesPerResource: 6
+  InitialDelay: 0.15
+  FlightDuration: 0.8
+  SpawnInterval: 0.06
+  ArcHeight: 100
+  ImpactDelay: 0.1
+  SmokeDuration: 0.5
+  RevealDuration: 0.35
+  RevealOvershoot: 1.15
+  ResourceIconScale: 2
+  BuildStartScale: 0
+  BuildEndScale: 1
+  BoingOvershoot: 1.2
+  BoingDuration: 0.3
+  ImpactBounceStrength: 0.08
+  ImpactBounceDuration: 0.18
+  GrowthSmoothness: 0.12

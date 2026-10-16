@@ -6,9 +6,20 @@ namespace UI.Hud.Resources
 {
     public class ResourceItemUI : MonoBehaviour
     {
-        [Header("UI References")]
-        [SerializeField] private Image resourceIcon;
+        [Header("UI References")] [SerializeField]
+        private Image resourceIcon;
+
         [SerializeField] private TMP_Text resourceAmount;
+
+
+        public Sprite Icon => resourceIcon != null
+            ? resourceIcon.sprite
+            : null;
+
+        public RectTransform IconRect => resourceIcon != null
+            ? resourceIcon.rectTransform
+            : null;
+
 
         public void SetResource(Sprite icon, int amount)
         {

@@ -21,4 +21,8 @@ MonoBehaviour:
     Prefab: {fileID: 4215411505513646189, guid: e6b9742fe2b794b44bdb91a04a433b1f, type: 3}
     BaseProductionAmount: 1
     ProductionDuration: 5
-    Costs: []
+    Costs:
+    - Resource: 0
+      Amount: 10
+    - Resource: 1
+      Amount: 5

@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,14 +14,24 @@ namespace UI.Hud.Resources
             public Sprite icon;
         }
 
-        [Header("References")]
-        [SerializeField] private ResourceInventory inventory;
+        [Header("References")] [SerializeField]
+        private ResourceInventory inventory;
+
         [SerializeField] private ResourceItemUI resourceItemPrefab;
 
-        [Header("Displayed Resources")]
-        [SerializeField] private List<ResourceDisplay> displayedResources = new();
+        [Header("Displayed Resources")] [SerializeField]
+        private List<ResourceDisplay> displayedResources = new();
 
         private readonly Dictionary<ResourceType, ResourceItemUI> items = new();
+
+
+        public bool TryGetResourceItem(
+            ResourceType type,
+            out ResourceItemUI item)
+        {
+            return items.TryGetValue(type, out item);
+        }
+
 
         private void Awake()
         {

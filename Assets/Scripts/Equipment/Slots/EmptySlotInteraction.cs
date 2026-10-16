@@ -1,3 +1,4 @@
+
 using UI.Construction;
 using UnityEngine;
 
@@ -7,16 +8,32 @@ namespace Equipment.Slots
     {
         [Header("References")]
         [SerializeField] private EquipmentSlot equipmentSlot;
-        [SerializeField] private ConstructionPanelUI constructionPanel;
+
+        private ConstructionPanelUI constructionPanel;
+
+        private void Awake()
+        {
+            constructionPanel = FindAnyObjectByType<ConstructionPanelUI>(
+                FindObjectsInactive.Include);
+        }
 
         private void OnMouseDown()
         {
-            if (equipmentSlot == null || constructionPanel == null)
+            if (equipmentSlot == null)
             {
                 Debug.LogWarning(
-                    "EmptySlotInteraction: referências não configuradas.");
+                    "EmptySlotInteraction: EquipmentSlot não configurado.");
                 return;
             }
+
+            if (constructionPanel == null)
+            {
+                Debug.LogWarning(
+                    "EmptySlotInteraction: ConstructionPanelUI não encontrado.");
+                return;
+            }
+
+            Debug.Log($"Abrindo construção para o slot: {equipmentSlot.SlotId}");
 
             constructionPanel.Open(equipmentSlot);
         }

@@ -293,8 +293,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2497868937103095082, guid: a1c20b14a725446ebb52770068ed28d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6520091867264860790}
+    - targetCorrespondingSourceObject: {fileID: 2497868937103095082, guid: a1c20b14a725446ebb52770068ed28d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2608721550717810957}
   m_SourcePrefab: {fileID: 100100000, guid: a1c20b14a725446ebb52770068ed28d1, type: 3}
+--- !u!1 &2000830034459906916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497868937103095082, guid: a1c20b14a725446ebb52770068ed28d1, type: 3}
+  m_PrefabInstance: {fileID: 4138340492925036110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6520091867264860790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000830034459906916}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1359907, y: 0.3229883, z: 1.1756092}
+  m_Center: {x: 0.49689427, y: -0.056560636, z: 0.5167758}
+--- !u!114 &2608721550717810957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000830034459906916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8889214ddb01540009c599692843fb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Equipment.Slots.EmptySlotInteraction
+  equipmentSlot: {fileID: 8986608391503297563}
+  constructionPanel: {fileID: 0}
 --- !u!4 &7322393399360381142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6696862270433199768, guid: a1c20b14a725446ebb52770068ed28d1, type: 3}
