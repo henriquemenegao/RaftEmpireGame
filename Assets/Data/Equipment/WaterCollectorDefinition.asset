@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ce30a84ae947c39c03a127210a69e0, type: 3}
+  m_Name: WaterCollectorDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::Equipment.Progression.EquipmentDefinition
+  EquipmentId: water_collector
+  DisplayName: "Coletor de \xC1gua"
+  Description: "Produz \xE1gua pot\xE1vel para a tripula\xE7\xE3o"
+  Icon: {fileID: 21300000, guid: 489927f6994b04349b78f92bd99c8db6, type: 3}
+  Levels:
+  - Level: 1
+    Prefab: {fileID: 4215411505513646189, guid: e6b9742fe2b794b44bdb91a04a433b1f, type: 3}
+    BaseProductionAmount: 1
+    ProductionDuration: 5
+    Costs: []

@@ -1,4 +1,3 @@
-
 using Crew;
 using Equipment.Core;
 using Resources;
@@ -11,26 +10,16 @@ namespace Equipment.Water
         public override CrewActivity Activity =>
             CrewActivity.CollectingWater;
 
-        [Header("Produção")]
-        [SerializeField, Min(0.1f)]
-        private float productionDuration = 20f;
-
-        [SerializeField, Min(1)]
-        private int waterPerCycle = 1;
-
         private ResourceInventory inventory;
         private float elapsedTime;
         private bool isProducing;
 
-        public override int BaseProductionAmount => waterPerCycle;
-        public override float ProductionDuration => productionDuration;
-
-        public override  float Progress =>
+        public override float Progress =>
             Mathf.Clamp01(
-                elapsedTime / Mathf.Max(0.01f, productionDuration)
+                elapsedTime / Mathf.Max(0.01f, ProductionDuration)
             );
 
-        public override  bool IsProducing => isProducing;
+        public override bool IsProducing => isProducing;
 
         private void Awake()
         {
@@ -44,6 +33,11 @@ namespace Equipment.Water
             }
         }
 
+        public void Initialize(ResourceInventory resourceInventory)
+        {
+            inventory = resourceInventory;
+        }
+
         public void StartProduction()
         {
             if (inventory == null || Operator == null)
@@ -54,7 +48,14 @@ namespace Equipment.Water
                 return;
             }
 
-            elapsedTime = 0f;
+            if (ProductionDuration <= 0f || BaseProductionAmount <= 0)
+            {
+                Debug.LogWarning(
+                    "WaterCollector: configuração de produção inválida."
+                );
+                return;
+            }
+
             isProducing = true;
         }
 
@@ -70,16 +71,11 @@ namespace Equipment.Water
                 return;
 
             elapsedTime += Time.deltaTime;
-
-            if (elapsedTime >= productionDuration)
+            if (elapsedTime >= ProductionDuration)
             {
-                elapsedTime -= productionDuration;
-
-                int producedAmount =
-                    waterPerCycle * Operator.Efficiency;
-
+                elapsedTime -= ProductionDuration;
+                int producedAmount = BaseProductionAmount * Operator.Efficiency;
                 inventory.Add(ResourceType.Water, producedAmount);
-
                 Debug.Log(
                     $"[WaterCollector] {Operator.CrewName} produziu " +
                     $"{producedAmount} água(s). " +

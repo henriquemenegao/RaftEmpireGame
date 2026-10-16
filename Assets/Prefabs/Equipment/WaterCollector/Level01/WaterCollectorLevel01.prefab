@@ -320,13 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc474462b1400d4aac5e6d5a7e34e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Equipment.Water.WaterCollector
-  displayName: "Coletor de \xC1gua"
-  level: 1
-  productionDescription: "Produz \xE1gua"
-  productionIcon: {fileID: 21300000, guid: 489927f6994b04349b78f92bd99c8db6, type: 3}
+  definition: {fileID: 11400000, guid: 54dda72f1ffa4457bbe8176883f9f7dc, type: 2}
   interactionPoint: {fileID: 633670086716624703}
-  productionDuration: 20
-  waterPerCycle: 1
 --- !u!1 &5978977849849272797
 GameObject:
   m_ObjectHideFlags: 0

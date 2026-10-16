@@ -21,9 +21,15 @@ namespace Dialogue
         [SerializeField] private float exitDuration = 0.3f;
         [SerializeField] private float offscreenPadding = 50f;
 
+        [Header("Panel Animation")]
+        [SerializeField] private CanvasGroup dialogueCanvasGroup;
+        [SerializeField] private float panelFadeDuration = 0.25f;
+
         private RectTransform portraitRect;
         private Vector2 portraitRestPosition;
+
         private Coroutine animationCoroutine;
+        private Coroutine panelFadeCoroutine;
 
         private bool isClosing;
 
@@ -33,6 +39,8 @@ namespace Dialogue
 
             // Guarda a posição configurada no Inspector.
             portraitRestPosition = portraitRect.anchoredPosition;
+
+            dialogueCanvasGroup.alpha = 0f;
 
             dialoguePanel.SetActive(false);
             characterPortrait.gameObject.SetActive(false);
@@ -51,23 +59,28 @@ namespace Dialogue
             dialogueManager.OnLineChanged -= HandleLineChanged;
             dialogueManager.OnDialogueFinished -= HandleDialogueFinished;
 
-            if (animationCoroutine != null)
-            {
-                StopCoroutine(animationCoroutine);
-                animationCoroutine = null;
-            }
+            StopCurrentAnimation();
+            StopPanelFade();
         }
 
         private void HandleDialogueStarted()
         {
             StopCurrentAnimation();
+            StopPanelFade();
 
             isClosing = false;
+
+            // Reinicia a transparência antes de abrir.
+            dialogueCanvasGroup.alpha = 0f;
 
             dialoguePanel.SetActive(true);
             characterPortrait.gameObject.SetActive(true);
 
+            // Fred começa fora da tela.
             portraitRect.anchoredPosition = GetOffscreenPosition();
+
+            // Animações independentes.
+            StartPanelFade(1f);
 
             animationCoroutine = StartCoroutine(
                 AnimatePortrait(
@@ -104,6 +117,7 @@ namespace Dialogue
 
             isClosing = true;
 
+            // Fred desliza para fora.
             animationCoroutine = StartCoroutine(
                 AnimatePortrait(
                     GetOffscreenPosition(),
@@ -111,13 +125,15 @@ namespace Dialogue
                     true
                 )
             );
+
+            // A faixa desaparece suavemente.
+            StartPanelFade(0f);
         }
 
         private Vector2 GetOffscreenPosition()
         {
-            // Como o pivot está em (0, 0), deslocar a largura
-            // completa deixa o retrato fora da lateral esquerda.
-            float distance = portraitRect.rect.width + offscreenPadding;
+            float distance =
+                portraitRect.rect.width + offscreenPadding;
 
             return portraitRestPosition + Vector2.left * distance;
         }
@@ -143,11 +159,15 @@ namespace Dialogue
 
                     float t = Mathf.Clamp01(elapsed / duration);
 
-                    // Smoothstep: acelera e desacelera suavemente.
+                    // Aceleração e desaceleração suaves.
                     float eased = t * t * (3f - 2f * t);
 
                     portraitRect.anchoredPosition =
-                        Vector2.LerpUnclamped(start, target, eased);
+                        Vector2.LerpUnclamped(
+                            start,
+                            target,
+                            eased
+                        );
 
                     yield return null;
                 }
@@ -157,14 +177,64 @@ namespace Dialogue
 
             if (hideWhenFinished && isClosing)
             {
+                // Interrompe qualquer fade ainda em andamento.
+                StopPanelFade();
+
+                // Garante que o painel fique invisível.
+                dialogueCanvasGroup.alpha = 0f;
+
                 dialoguePanel.SetActive(false);
                 characterPortrait.gameObject.SetActive(false);
 
+                // Restaura a posição original para a próxima conversa.
                 portraitRect.anchoredPosition = portraitRestPosition;
+
                 isClosing = false;
             }
 
             animationCoroutine = null;
+        }
+
+        private void StartPanelFade(float targetAlpha)
+        {
+            StopPanelFade();
+
+            panelFadeCoroutine = StartCoroutine(
+                FadePanel(targetAlpha)
+            );
+        }
+
+        private IEnumerator FadePanel(float targetAlpha)
+        {
+            float startAlpha = dialogueCanvasGroup.alpha;
+            float elapsed = 0f;
+
+            if (panelFadeDuration <= 0f)
+            {
+                dialogueCanvasGroup.alpha = targetAlpha;
+                panelFadeCoroutine = null;
+                yield break;
+            }
+
+            while (elapsed < panelFadeDuration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+
+                float t = Mathf.Clamp01(
+                    elapsed / panelFadeDuration
+                );
+
+                dialogueCanvasGroup.alpha = Mathf.Lerp(
+                    startAlpha,
+                    targetAlpha,
+                    t
+                );
+
+                yield return null;
+            }
+
+            dialogueCanvasGroup.alpha = targetAlpha;
+            panelFadeCoroutine = null;
         }
 
         private void StopCurrentAnimation()
@@ -174,6 +244,15 @@ namespace Dialogue
 
             StopCoroutine(animationCoroutine);
             animationCoroutine = null;
+        }
+
+        private void StopPanelFade()
+        {
+            if (panelFadeCoroutine == null)
+                return;
+
+            StopCoroutine(panelFadeCoroutine);
+            panelFadeCoroutine = null;
         }
 
         public void OnPointerClick(PointerEventData eventData)
