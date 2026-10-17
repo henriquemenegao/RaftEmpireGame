@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using Equipment.Progression;
 using TMPro;
@@ -32,7 +33,9 @@ namespace UI.Construction
             int ownedCount,
             int maxCount,
             EquipmentBuildStatus buildStatus,
-            IReadOnlyDictionary<Resources.ResourceType, Sprite> resourceIcons)
+            bool canAfford,
+            IReadOnlyDictionary<Resources.ResourceType, Sprite> resourceIcons,
+            Action onBuild)
         {
             if (definition == null)
                 return;
@@ -45,27 +48,29 @@ namespace UI.Construction
 
             ownershipInfo.text = $"Possui: {ownedCount} de {maxCount}";
 
-            actionButton.interactable =
+            bool available =
                 buildStatus == EquipmentBuildStatus.Available;
 
-            statusMessage.gameObject.SetActive(
-                buildStatus != EquipmentBuildStatus.Available);
+            actionButton.interactable = available && canAfford;
+
+            actionButton.onClick.RemoveAllListeners();
+
+            if (onBuild != null)
+                actionButton.onClick.AddListener(() => onBuild());
+
+            string message = "";
 
             if (buildStatus == EquipmentBuildStatus.LimitReached)
-            {
-                statusMessage.text =
-                    "Continue evoluindo seu barco para construir mais";
-            }
+                message = "Continue evoluindo seu barco para construir mais";
             else if (buildStatus == EquipmentBuildStatus.Locked)
-            {
-                statusMessage.text =
-                    "Equipamento ainda não desbloqueado";
-            }
+                message = "Equipamento ainda não desbloqueado";
             else if (buildStatus == EquipmentBuildStatus.InvalidConfiguration)
-            {
-                statusMessage.text =
-                    "Equipamento indisponível";
-            }
+                message = "Equipamento indisponível";
+            else if (!canAfford)
+                message = "Recursos insuficientes";
+
+            statusMessage.text = message;
+            statusMessage.gameObject.SetActive(!string.IsNullOrEmpty(message));
 
             foreach (var item in spawnedCosts)
             {
@@ -77,15 +82,17 @@ namespace UI.Construction
 
             var levelOne = definition.GetLevel(1);
 
-            if (levelOne == null)
+            if (levelOne == null || levelOne.Costs == null)
                 return;
 
             foreach (var cost in levelOne.Costs)
             {
+                if (cost == null)
+                    continue;
+
                 Sprite icon = null;
 
-                if (resourceIcons != null)
-                    resourceIcons.TryGetValue(cost.Resource, out icon);
+                resourceIcons?.TryGetValue(cost.Resource, out icon);
 
                 var item = Instantiate(costItemPrefab, costsContainer);
                 item.Configure(icon, cost.Amount);

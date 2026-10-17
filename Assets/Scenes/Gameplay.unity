@@ -577,83 +577,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162396270}
   m_CullTransparentMesh: 1
---- !u!1001 &167490003
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1427216489}
-    m_Modifications:
-    - target: {fileID: 2667730029373727367, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_Name
-      value: Crew_Test
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008732015717276377, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: crewName
-      value: Enrico
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008732015717276377, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: isCaptain
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3008732015717276377, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: efficiency
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.40758002
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.68898743
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7247733
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 92.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695978278537339463, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9d68bfa230720954cb497678454630db, type: 2}
-    - target: {fileID: 8695978278537339463, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
 --- !u!1 &168325512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4661,6 +4584,9 @@ MonoBehaviour:
   raftLevel: {fileID: 11400000, guid: 752b01c8601cc42cca316bf05aa1fb45, type: 2}
   cardPrefab: {fileID: 5715705897293229798, guid: 357f6ace2d9d84a118658fb547e06b52, type: 3}
   buildContent: {fileID: 1335818567}
+  purchaseService: {fileID: 1758792411}
+  installationService: {fileID: 1758792412}
+  animationController: {fileID: 1758792410}
   resourceIcons:
   - Resource: 0
     Icon: {fileID: 21300000, guid: a8801bc0b010aee4baa55b1570065e2f, type: 3}
@@ -5003,11 +4929,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227398930}
   m_CullTransparentMesh: 1
---- !u!4 &1247681599 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3309001377253947543, guid: 5ef2a973e81194e2796d675c37b06a65, type: 3}
-  m_PrefabInstance: {fileID: 4445910391184462309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1254054581
 GameObject:
   m_ObjectHideFlags: 0
@@ -5510,13 +5431,13 @@ MonoBehaviour:
     prefab: {fileID: 7802356807898581399, guid: e603607d4872ce4449e705bb8d75849b, type: 3}
     enabled: 1
     weight: 4
-  minInterval: 5
-  maxInterval: 10
+  minInterval: 3
+  maxInterval: 6
   maxActiveResources: 12
   spawnCenter: {fileID: 408643081}
   spawnAreaSize: {x: 7, y: 2}
   currentDirection: {x: 0.73, y: -15}
-  speedRange: {x: 0.2, y: 0.4}
+  speedRange: {x: 0.2, y: 0.8}
   maxLifetime: 60
   maxTravelDistance: 12
 --- !u!1 &1384033125
@@ -5615,7 +5536,6 @@ Transform:
   m_Children:
   - {fileID: 580292702}
   - {fileID: 451343493}
-  - {fileID: 1641622063}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1427216490
@@ -5899,11 +5819,6 @@ MonoBehaviour:
   crewManager: {fileID: 1879577410}
   cardPrefab: {fileID: 6934166250960334793, guid: 4a4fbb8ae71426848bab2709126c80b1, type: 3}
   content: {fileID: 324242127}
---- !u!4 &1641622063 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3336744008948316221, guid: 60ee26892e8dcf64fb0e09a9e97c0976, type: 3}
-  m_PrefabInstance: {fileID: 167490003}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1661980988
 GameObject:
   m_ObjectHideFlags: 0
@@ -6260,8 +6175,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI.Equipment.EquipmentPanelUI, Assembly-CSharp
+      - m_Target: {fileID: 1190672095}
+        m_TargetAssemblyTypeName: UI.Construction.ConstructionPanelUI, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -6598,7 +6513,6 @@ GameObject:
   - component: {fileID: 1758792411}
   - component: {fileID: 1758792412}
   - component: {fileID: 1758792413}
-  - component: {fileID: 1758792414}
   m_Layer: 0
   m_Name: EquipmentSystem
   m_TagString: Untagged
@@ -6677,6 +6591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e68e0d2a614faebeeaafddfd3cc46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Equipment.Progression.EquipmentInstallationService
+  equipmentInventory: {fileID: 1758792409}
 --- !u!114 &1758792413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6689,21 +6604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98bbf229bc84559a7b7170f88e8c9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Equipment.Construction.EquipmentBuildAnimation
---- !u!114 &1758792414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758792407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e974f2aa35c3441a68a4e7ffc9a23b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Equipment.Construction.ConstructionAnimationTest
-  animationController: {fileID: 1758792410}
-  equipment: {fileID: 11400000, guid: 8bc4cfdd3011e4ad7b7a1edfc5bcb82e, type: 2}
-  target: {fileID: 1247681599}
 --- !u!1 &1797515557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7351,17 +7251,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5982653776338923275, guid: 5ef2a973e81194e2796d675c37b06a65, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6417766135286000428, guid: 5ef2a973e81194e2796d675c37b06a65, type: 3}
       propertyPath: m_Name
       value: BoatLevel01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296552078869538797, guid: 5ef2a973e81194e2796d675c37b06a65, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

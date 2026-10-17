@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using Save;
@@ -21,7 +22,16 @@ namespace Resources
             if (amount <= 0)
                 return;
 
-            resources[type] = GetAmount(type) + amount;
+            int current = GetAmount(type);
+
+            if (current > int.MaxValue - amount)
+            {
+                Debug.LogWarning(
+                    $"[ResourceInventory] Resource overflow: {type}");
+                return;
+            }
+
+            resources[type] = current + amount;
 
             OnResourceChanged?.Invoke(type, resources[type]);
         }
@@ -38,11 +48,54 @@ namespace Resources
             return true;
         }
 
+        public bool CanSpendBatch(
+            IReadOnlyDictionary<ResourceType, int> costs)
+        {
+            if (costs == null)
+                return false;
+
+            foreach (var cost in costs)
+            {
+                if (cost.Value <= 0)
+                    return false;
+
+                if (GetAmount(cost.Key) < cost.Value)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public bool TrySpendBatch(
+            IReadOnlyDictionary<ResourceType, int> costs)
+        {
+            // Valida todos os custos antes de descontar qualquer recurso.
+            if (!CanSpendBatch(costs))
+                return false;
+
+            foreach (var cost in costs)
+            {
+                resources[cost.Key] =
+                    GetAmount(cost.Key) - cost.Value;
+            }
+
+            // Notifica a HUD somente após concluir o pagamento.
+            foreach (var cost in costs)
+            {
+                OnResourceChanged?.Invoke(
+                    cost.Key,
+                    resources[cost.Key]);
+            }
+
+            return true;
+        }
+
         public List<ResourceSaveData> ExportSaveData()
         {
             var result = new List<ResourceSaveData>();
 
-            foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
+            foreach (ResourceType type in Enum.GetValues(
+                         typeof(ResourceType)))
             {
                 result.Add(new ResourceSaveData
                 {
@@ -54,7 +107,8 @@ namespace Resources
             return result;
         }
 
-        public void ImportSaveData(List<ResourceSaveData> savedResources)
+        public void ImportSaveData(
+            List<ResourceSaveData> savedResources)
         {
             resources.Clear();
 
@@ -63,12 +117,15 @@ namespace Resources
                 foreach (ResourceSaveData saved in savedResources)
                 {
                     if (saved == null ||
-                        !Enum.TryParse(saved.resourceId, true, out ResourceType type) ||
+                        !Enum.TryParse(
+                            saved.resourceId,
+                            true,
+                            out ResourceType type) ||
                         !Enum.IsDefined(typeof(ResourceType), type))
                     {
                         Debug.LogWarning(
-                            $"[ResourceInventory] Unknown resource: {saved?.resourceId}"
-                        );
+                            $"[ResourceInventory] Unknown resource: " +
+                            $"{saved?.resourceId}");
 
                         continue;
                     }
@@ -77,10 +134,13 @@ namespace Resources
                 }
             }
 
-            // Atualiza todos os recursos, inclusive os que ficaram zerados.
-            foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
+            // Atualiza todos os recursos, inclusive os zerados.
+            foreach (ResourceType type in Enum.GetValues(
+                         typeof(ResourceType)))
             {
-                OnResourceChanged?.Invoke(type, GetAmount(type));
+                OnResourceChanged?.Invoke(
+                    type,
+                    GetAmount(type));
             }
         }
     }
